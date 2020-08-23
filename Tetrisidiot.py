@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[13]:
+# In[1]:
+
 
 
 #调用函数库
@@ -27,9 +28,9 @@ memory=F_memory.memory_read()
 
 
 #自学习过程
-while num2==1 and num10==1: #待修改
+while num2>0 and num10>0: #待修改
     
-    print("——"*40)
+    print("——"*20)
     
     #读取屏幕
     filename='png.bmp'
@@ -39,24 +40,62 @@ while num2==1 and num10==1: #待修改
     
     #得到二进制参数num2
     print("正在处理图片***")
+
+    print("开始将图片二值化***")
+    #time.sleep(3)
+
     F_pic.picTo2() #图片二值化
+
+    print("二值化完成")
+    print(" ")
+    #time.sleep(3)
     
-    
-    num2=F_pic.pic200(num2)
+    print("开始生成二进制编号***")
+    #time.sleep(3)
+
+    num2=F_pic.pic200()
+
+    print("二进制编号生成完成***")
+    print(" ")
+    #time.sleep(3)
     
     #把二进制参数num2转化十进制参数num10
-    num=F_transform.to2to10(num2)
+    print("开始把编号转化为十进制***")
+    #time.sleep(3)
+    num10=F_transform.to2to10(num2)
+
+    print("转化完成***")
+    print(" ")
+    #time.sleep(3)
     
+    print("开始输出编号***")
+    #time.sleep(3)
+
     #输出事件参数
     print("事件编号:%d" %num10)
+    print("输出完成***")
+    #time.sleep(3)
     print(" ")
     
+    print("开始调整游戏状态***")
+    #time.sleep(3)
+
     #检查是否为游戏中状态，不是就让他进入游戏中
-    F_pic.pic11(num10)
+    F_pic.pic11()
+
+    print("调整完成***")
+    #time.sleep(3)
+    print(" ")
     
+    print("开始回忆***")
+    #time.sleep(3)
     
     #检查字典里是否有该事件
     memory_if=memory.__contains__(str(num10))
+
+    print("回忆完成")
+    #time.sleep(3)
+    print(" ")
     
     if memory_if==False:
     #无，输出已创建新事件
@@ -106,13 +145,10 @@ while num2==1 and num10==1: #待修改
     F_memory.memory_write(memory)    
     
 input("press Enter")
-      
-         
-        
-
-    
-    
-    
 
 
 # In[ ]:
+
+
+
+

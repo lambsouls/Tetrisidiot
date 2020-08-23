@@ -34,23 +34,73 @@ def judge_key(memory_up,memory_down,memory_left,memory_right,memory_block):
     return(key1)
 
 
-# In[3]:
+# In[17]:
 
 
-def jugfe_fen(memory,num10,memory_wight):
+import F_pic
+import F_transform
+import time
+import F_jietu
+
+
+def jugfe_fen(memory,num10,memory_wight,num11):
     """评价操作"""
-    import F_transform
-    import F_suiji #随机函数，临时用
+    #import F_suiji #随机函数，临时用
     
     print("开始对操作评分***")
+    #time.sleep(3)
+    print(" ")
     
-    num2_=F_suiji.suijinum2() #暂时用随机函数代替
+    #num2_=F_suiji.suijinum2() #暂时用随机函数代替
+
+    num10_=num10
+    p11=0
     
-    #把二进制参数num2转化十进制参数num10
-    num10_=F_transform.to2to10(num2_)
+    while num10_==num10 and p11==0:
+        p11=F_pic.picpixel(343,146)
+        print("开始读取屏幕变化***")
+        
+        filename='png.bmp'
+        F_jietu.window_capture(filename)
+        #time.sleep(3)
+
+        #得到二进制参数num2
+        print("正在处理图片***")
+
+        print("开始将图片二值化***")
+        #time.sleep(3)
+
+        F_pic.picTo2() #图片二值化
+
+        print("二值化完成")
+        print(" ")
+        #time.sleep(3)
+
+        print("开始生成二进制编号***")
+        #time.sleep(3)
+
+        num2_=F_pic.pic200()
+
+        print("二进制编号生成完成***")
+        print(" ")
+        #time.sleep(3)
+
+        num2_=F_pic.pic200()
+
+        print("读取完成")
+        #time.sleep(3)
+        print(" ")    
+
+        #把二进制参数num2转化十进制参数num10
+        num10_=F_transform.to2to10(num2_)
     
-    if num10_==num10:
-        print("该操作为无效操作")
+    print("开始对比事件状态***")
+    num11_=F_pic.pic201()
+    print("分析完毕 状态码为：%d" %num11_)
+    print(" ")
+    
+    if num11>num11_ :
+        return_=2
     else:
         if memory.__contains__(str(num10_))==False:
             print("该操作 按键加权得分：0分  事件加权得分：0分")

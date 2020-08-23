@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[ ]:
 
 
 #调用函数库
 import F_transform
 import F_body
-import F_suiji #随机函数，临时用
+#import F_suiji #随机函数，临时用
 import F_testing
 import F_memory
 import F_judge
@@ -39,69 +39,24 @@ while num2>0 and num10>0: #待修改
     
     #得到二进制参数num2
     print("正在处理图片***")
-
-    print("开始将图片二值化***")
-    #time.sleep(3)
-
     F_pic.picTo2() #图片二值化
-
-    print("二值化完成")
-    print(" ")
-    #time.sleep(3)
     
-    print("开始生成二进制编号***")
-    #time.sleep(3)
-
-    num2=F_pic.pic200()
-
-    print("二进制编号生成完成***")
-    print(" ")
-    #time.sleep(3)
+    
+    num2=F_pic.pic200() #暂时用随机函数代替
     
     #把二进制参数num2转化十进制参数num10
-    print("开始把编号转化为十进制***")
-    #time.sleep(3)
     num10=F_transform.to2to10(num2)
-
-    print("转化完成***")
-    print(" ")
-    #time.sleep(3)
     
-    print("开始输出编号***")
-    #time.sleep(3)
-
     #输出事件参数
     print("事件编号:%d" %num10)
-    print("输出完成***")
-    #time.sleep(3)
     print(" ")
     
-    print("开始分析事件状态***")
-    num11=F_pic.pic201()
-    print("分析完毕 状态码为：%d" %num11)
-    print(" ")
+    #检查是否为游戏中状态，不是就让他进入游戏中
+    F_body.body2(num10)
     
-    
-    print("开始调整游戏状态***")
-    #time.sleep(3)
-
-    #检查是否为游戏中状态，不是就让他进入游戏中F_pic.pic11()
-    F_pic.pic11()
-    
-
-    print("调整完成***")
-    #time.sleep(3)
-    print(" ")
-    
-    print("开始回忆***")
-    #time.sleep(3)
     
     #检查字典里是否有该事件
     memory_if=memory.__contains__(str(num10))
-
-    print("回忆完成")
-    #time.sleep(3)
-    print(" ")
     
     if memory_if==False:
     #无，输出已创建新事件
@@ -118,18 +73,18 @@ while num2>0 and num10>0: #待修改
         
     print("已读取事件%d的记忆:" %num10)
     
-    #读取记忆值并赋值给memory_up,memory_down,memory_left,memory_right,memory_block,memory_weight
+    #读取记忆值并赋值给memory_up,memory_down,memory_left,memory_right,memory_block,memory_wight
     memorylist=memory[str(num10)]
-    memory_up,memory_down,memory_left,memory_right,memory_block,memory_weight=memorylist
+    memory_up,memory_down,memory_left,memory_right,memory_block,memory_wight=memorylist
     
-    print("按键上权重:%d 按键下权重:%d 按键左权重:%d 按键右权重:%d 按键空格权重:%d 事件权重分:%d" %(memory_up,memory_down,memory_left,memory_right,memory_block,memory_weight))
+    print("按键上权重:%d 按键下权重:%d 按键左权重:%d 按键右权重:%d 按键空格权重:%d 事件权重分:%d" %(memory_up,memory_down,memory_left,memory_right,memory_block,memory_wight))
     print(" ")
     
     #做出按键判断
     key=F_judge.judge_key(memory_up,memory_down,memory_left,memory_right,memory_block)
     
     #评价操作
-    Fen=F_judge.jugfe_fen(memory,num10,memory_weight,num11)
+    Fen=F_judge.jugfe_fen(memory,num10,memory_wight)
     print("正在思考与总结***")
     #time.sleep(1)
     
@@ -147,10 +102,6 @@ while num2>0 and num10>0: #待修改
             memorylist[4]=memory_block+1
         memorylist[0]=memory_weight+1
     
-    memorystr="{\"%d\":%s}" %(num10,memorylist)
-    memoryDict=F_transform.strToDict(memorystr)
-    memory.update(memoryDict)#合并2个字典
-
     #写入记忆
     F_memory.memory_write(memory)    
     
